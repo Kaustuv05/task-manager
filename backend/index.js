@@ -11,7 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 const authRoutes = require('./src/routes/auth');
-const taskRoutes = require('./src/routes/tasks');
+const taskRoutes = require('./src/routes/taskRoutes');
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
