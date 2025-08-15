@@ -16,7 +16,7 @@ const TaskList = () => {
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5001/api/tasks', {
+      const { data } = await axios.get('https://taskpilot-xkdu.onrender.com/api/tasks', {
         params: { page, limit, status, q, sort },
       });
       setTasks(data.data); // backend sends { data: [...], page, limit, totalPages }

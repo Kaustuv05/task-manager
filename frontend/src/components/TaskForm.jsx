@@ -30,9 +30,9 @@ const TaskForm = ({ modalIsOpen, closeModal, task, refreshTasks }) => {
     const taskData = { title, status, isImportant, dueDate };
     try {
       if (task) {
-        await axios.put(`http://localhost:5001/api/tasks/${task._id}`, taskData);
+        await axios.put(`https://taskpilot-xkdu.onrender.com/api/tasks/${task._id}`, taskData);
       } else {
-        await axios.post('http://localhost:5001/api/tasks', taskData);
+        await axios.post('https://taskpilot-xkdu.onrender.com/api/tasks', taskData);
       }
       refreshTasks();
       closeModal();
