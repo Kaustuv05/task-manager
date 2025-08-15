@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/task-manager",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/task-manager/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    }
+  ]
+}

@@ -32,9 +32,7 @@ const HomePage = () => {
             <span className="logo-text">TaskPilot</span>
           </div>
           
-          <a href="/login" className="login-btn">
-            Login
-          </a>
+          <Link to="/login">Login</Link>
         </nav>
       </header>
 
