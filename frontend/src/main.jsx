@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
-import About from './pages/About.jsx'; // Make sure to import About
+import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import TaskList from './pages/TaskList.jsx';
+import Dashboard from './pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -14,12 +15,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true, // This replaces path: '/' for the default route
+        index: true,
         element: <HomePage />,
       },
       {
         path: 'about',
-        element: <About />, // Add the About route
+        element: <About />,
       },
       {
         path: 'login',
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'tasks',
         element: <TaskList />,
+      },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
       },
     ],
   },

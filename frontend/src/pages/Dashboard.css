@@ -1,0 +1,79 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-title {
+  color: #2d3748;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.stat-percentage {
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+/* Color coding for different stats */
+.total-tasks { border-top: 4px solid #4299e1; }
+.completed-tasks { border-top: 4px solid #48bb78; }
+.pending-tasks { border-top: 4px solid #ed8936; }
+.overdue-tasks { border-top: 4px solid #f56565; }
+
+/* Chart styles */
+.chart-container {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.bar-chart {
+  display: flex;
+  height: 300px;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.chart-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  transition: height 0.5s ease;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.chart-bar span {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.completed { background-color: #48bb78; }
+.pending { background-color: #ed8936; }
+.overdue { background-color: #f56565; }
