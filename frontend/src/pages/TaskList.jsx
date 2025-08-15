@@ -42,7 +42,7 @@ const TaskList = () => {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/tasks/${id}`);
+      await axios.delete(`https://taskpilot-xkdu.onrender.com/api/tasks/${id}`);
       fetchTasks();
     } catch (error) {
       console.error('Failed to delete task', error);

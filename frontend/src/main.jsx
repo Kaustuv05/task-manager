@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
+import About from './pages/About.jsx'; // Make sure to import About
 import Login from './pages/Login.jsx';
 import TaskList from './pages/TaskList.jsx';
 
@@ -13,8 +14,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/',
+        index: true, // This replaces path: '/' for the default route
         element: <HomePage />,
+      },
+      {
+        path: 'about',
+        element: <About />, // Add the About route
       },
       {
         path: 'login',

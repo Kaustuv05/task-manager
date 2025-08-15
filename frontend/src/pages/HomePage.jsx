@@ -1,23 +1,15 @@
 import React from 'react';
 import './HomePage.css';
-
-// Mock Link component - replace with your actual react-router-dom Link
-const Link = ({ to, children, className, ...props }) => (
-  <a href={to} className={className} {...props}>
-    {children}
-  </a>
-);
+import { Link } from 'react-router-dom'; 
 
 const HomePage = () => {
   return (
     <div className="homepage-container">
-      {/* Background decorative elements */}
       <div className="background-overlay"></div>
       <div className="bg-decoration bg-decoration-1"></div>
       <div className="bg-decoration bg-decoration-2"></div>
       <div className="bg-decoration bg-decoration-3"></div>
       
-      {/* Header/Navigation */}
       <header className="header">
         <nav className="nav">
           <div className="logo-container">
@@ -35,10 +27,8 @@ const HomePage = () => {
         </nav>
       </header>
 
-      {/* Main content */}
       <main className="main-content">
         <div className="content-wrapper">
-          {/* Hero content */}
           <div>
             <h1 className="hero-title">
               Hi <span className="hero-highlight">there!</span>
@@ -53,16 +43,15 @@ const HomePage = () => {
               <button className="cta-primary">
                 Get Started
               </button>
-              
-              <button className="cta-secondary">
+
+              <Link to="/about" className="cta-secondary">
                 Learn More
                 <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </Link>
             </div>
             
-            {/* Feature highlights */}
             <div className="features-grid">
               <div className="feature-card">
                 <div className="feature-icon">
@@ -98,7 +87,6 @@ const HomePage = () => {
         </div>
       </main>
 
-      {/* Floating particles animation */}
       <div className="particles-container">
         <div className="particle particle-1"></div>
         <div className="particle particle-2"></div>
