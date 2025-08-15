@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskForm from '../components/TaskForm';
+import './TaskList.css'; 
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,7 +13,7 @@ const TaskList = () => {
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/tasks', {
+      const { data } = await axios.get('http://localhost:5001/api/tasks', {
         params: { page, status, q },
       });
       setTasks(data);
@@ -45,56 +46,77 @@ const TaskList = () => {
   };
 
   return (
-    <div>
-      <h2>Task List</h2>
-      <button onClick={() => openModal()}>Add Task</button>
-      <div>
-        <label>Status:</label>
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="">All</option>
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
-        </select>
+    <div className="task-list-container">
+      <div className="task-list-wrapper">
+        <div className="task-list-header">
+          <h2 className="header-title">Task List</h2>
+          <button className="add-task-btn" onClick={() => openModal()}>Add Task</button>
+        </div>
+        
+        <div className="task-filters">
+          <div className="filter-group">
+            <label className="filter-label">Status:</label>
+            <select className="filter-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="">All</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <div className="filter-group">
+            <label className="filter-label">Search:</label>
+            <input className="filter-input" type="text" value={q} onChange={(e) => setQ(e.target.value)} />
+          </div>
+        </div>
+
+        <div className="table-container">
+          <table className="task-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.isArray(tasks) && tasks.map((task) => (
+                <tr key={task._id}>
+                  <td data-label="Title">
+                    <div className="task-title">{task.title}</div>
+                  </td>
+                  <td data-label="Description">
+                    <div className="task-description">{task.description}</div>
+                  </td>
+                  <td data-label="Status">
+                    <span className={`task-status ${task.status}`}>{task.status}</span>
+                  </td>
+                  <td data-label="Actions">
+                    <div className="action-buttons">
+                      <button className="action-btn edit-btn" onClick={() => openModal(task)}>Edit</button>
+                      <button className="action-btn delete-btn" onClick={() => deleteTask(task._id)}>Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="pagination">
+          <button className="pagination-btn" onClick={() => setPage(page - 1)} disabled={page === 1}>
+            Previous
+          </button>
+          <span className="page-info">Page {page}</span>
+          <button className="pagination-btn" onClick={() => setPage(page + 1)}>Next</button>
+        </div>
+
+        <TaskForm
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          task={selectedTask}
+          refreshTasks={fetchTasks}
+        />
       </div>
-      <div>
-        <label>Search:</label>
-        <input type="text" value={q} onChange={(e) => setQ(e.target.value)} />
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task._id}>
-              <td>{task.title}</td>
-              <td>{task.description}</td>
-              <td>{task.status}</td>
-              <td>
-                <button onClick={() => openModal(task)}>Edit</button>
-                <button onClick={() => deleteTask(task._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Previous
-        </button>
-        <button onClick={() => setPage(page + 1)}>Next</button>
-      </div>
-      <TaskForm
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        task={selectedTask}
-        refreshTasks={fetchTasks}
-      />
     </div>
   );
 };
