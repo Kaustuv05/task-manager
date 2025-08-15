@@ -41,7 +41,7 @@ const HomePage = () => {
           {/* Hero content */}
           <div>
             <h1 className="hero-title">
-              Hello, <span className="hero-highlight">world!</span>
+              Hi <span className="hero-highlight">there!</span>
             </h1>
             
             <p className="hero-subtitle">
