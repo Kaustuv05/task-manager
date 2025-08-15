@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="homepage-container">
+      {/* Background Elements */}
       <div className="background-overlay"></div>
       <div className="bg-decoration bg-decoration-1"></div>
       <div className="bg-decoration bg-decoration-2"></div>
       <div className="bg-decoration bg-decoration-3"></div>
       
+      {/* Header */}
       <header className="header">
         <nav className="nav">
           <div className="logo-container">
@@ -21,79 +32,86 @@ const HomePage = () => {
             <span className="logo-text">TaskPilot</span>
           </div>
           
-          <Link to="/login" className="login-btn">
+          <a href="/login" className="login-btn">
             Login
-          </Link>
+          </a>
         </nav>
       </header>
 
+      {/* Main Content */}
       <main className="main-content">
-        <div className="content-wrapper">
-          <div>
-            <h1 className="hero-title">
-              Hi <span className="hero-highlight">there!</span>
-            </h1>
-            
-            <p className="hero-subtitle">
-              Welcome to TaskPilot - Your intelligent task management companion. 
-              Navigate your productivity with precision and style.
-            </p>
-            
-            <div className="cta-container">
-              <button className="cta-primary">
-                Get Started
-              </button>
+        <div className={`content-wrapper ${isLoaded ? 'loaded' : ''}`}>
+          {/* Hero Section */}
+          <h1 className="hero-title">
+            Hi <span className="hero-highlight">there!</span>
+          </h1>
+          
+          <p className="hero-subtitle">
+            Welcome to TaskPilot - Your intelligent task management companion. 
+            Navigate your productivity with precision and style.
+          </p>
+          
+          {/* Enhanced CTA Container */}
+          <div className="cta-container">
+            {/* Primary CTA */}
+            <button className="cta-primary">
+              Get Started
+            </button>
 
-              <Link to="/about" className="cta-secondary">
+            {/* Secondary CTAs Row */}
+            <div className="cta-secondary-row">
+              <a href="/about" className="cta-secondary">
                 Learn More
                 <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
-                      
-                  <Link to="/dashboard" className="cta-secondary">
-                    View Dashboard
-                    <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                   </svg>
-                  </Link>
+              </a>
+              
+              <a href="/dashboard" className="cta-secondary cta-dashboard">
+                View Dashboard
+                <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          {/* Features Grid */}
+          <div className="features-grid">
+            <div className="feature-card" tabIndex="0">
+              <div className="feature-icon feature-icon-lightning">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="feature-title">Lightning Fast</h3>
+              <p className="feature-description">Manage tasks with unprecedented speed and efficiency</p>
             </div>
             
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="feature-title">Lightning Fast</h3>
-                <p className="feature-description">Manage tasks with unprecedented speed and efficiency</p>
+            <div className="feature-card" tabIndex="0">
+              <div className="feature-icon feature-icon-insights">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
               </div>
-              
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h3 className="feature-title">Smart Insights</h3>
-                <p className="feature-description">AI-powered analytics to optimize your workflow</p>
+              <h3 className="feature-title">Smart Insights</h3>
+              <p className="feature-description">AI-powered analytics to optimize your workflow</p>
+            </div>
+            
+            <div className="feature-card" tabIndex="0">
+              <div className="feature-icon feature-icon-team">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
               </div>
-              
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="feature-title">Team Sync</h3>
-                <p className="feature-description">Seamless collaboration across all your projects</p>
-              </div>
+              <h3 className="feature-title">Team Sync</h3>
+              <p className="feature-description">Seamless collaboration across all your projects</p>
             </div>
           </div>
         </div>
       </main>
 
+      {/* Floating Particles */}
       <div className="particles-container">
         <div className="particle particle-1"></div>
         <div className="particle particle-2"></div>
