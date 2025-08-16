@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskForm from '../components/TaskForm';
 import './TaskList.css';
+import { Link } from 'react-router-dom';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -54,6 +55,9 @@ const TaskList = () => {
       <div className="task-list-wrapper">
         <div className="task-list-header">
           <h2 className="header-title">Task List</h2>
+          <Link to="/dashboard" className="add-task-btn" style={{marginRight: '10px'}}>
+              Dashboard
+            </Link>
           <button className="add-task-btn" onClick={() => openModal()}>Add Task</button>
         </div>
 
