@@ -21,7 +21,7 @@ const HomePage = () => {
       <div className="bg-decoration bg-decoration-3"></div>
       
       {/* Header */}
-      <header className="header">
+     <header className="header">
         <nav className="nav">
           <div className="logo-container">
             <div className="logo-icon">
@@ -32,7 +32,12 @@ const HomePage = () => {
             <span className="logo-text">TaskPilot</span>
           </div>
           
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="login-button">
+            <span className="login-text">Login</span>
+            <svg className="login-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+          </Link>
         </nav>
       </header>
 
@@ -65,12 +70,6 @@ const HomePage = () => {
                 </svg>
               </a>
               
-              <a href="/dashboard" className="cta-secondary cta-dashboard">
-                View Dashboard
-                <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
             </div>
           </div>
           

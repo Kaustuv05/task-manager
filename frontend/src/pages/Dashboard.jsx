@@ -411,8 +411,8 @@ const Dashboard = () => {
                 <Bar dataKey="productivity" fill="url(#productivityGradient)" radius={[4, 4, 0, 0]} />
                 <defs>
                   <linearGradient id="productivityGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8B5CF6" stopOpacity={1}/>
-                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.6}/>
+                    <stop offset="5%" stopColor="#75dbc2ff" stopOpacity={1}/>
+                    <stop offset="95%" stopColor="#cad96aff" stopOpacity={0.6}/>
                   </linearGradient>
                 </defs>
               </BarChart>
